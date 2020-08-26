@@ -6,7 +6,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -48,13 +49,15 @@ public class Events implements Listener {
     }
 
     @EventHandler
-    private void InventoryClickEvent(InventoryClickEvent e) {
-        String current = e.getCurrentItem().getType().toString();
-        if (ids.contains(current)) {
-            Player p = (Player) e.getWhoClicked();
-            final ItemStack itemStack = e.getCurrentItem();
-            e.getWhoClicked().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
-            execute(p, current, itemStack);
+    private void click(PlayerInteractEvent e) {
+        if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            Player p = e.getPlayer();
+            String current = p.getInventory().getItemInMainHand().getType().toString();
+            if (ids.contains(current)) {
+                final ItemStack itemStack = p.getInventory().getItemInMainHand();
+                e.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
+                execute(p, current, itemStack);
+            }
         }
     }
 
