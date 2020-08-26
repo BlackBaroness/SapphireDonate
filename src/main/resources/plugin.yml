@@ -1,0 +1,3 @@
+name: SapphireDonate
+version: ${project.version}
+main: com.sapphire.sapphiredonate.Core
