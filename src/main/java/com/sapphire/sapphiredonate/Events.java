@@ -23,15 +23,15 @@ public class Events implements Listener {
 
     // ==============================================
     // паки
-    String ECONOMY_PACK;
-    String MAGIC_PACK;
-    String TECHNO_PACK;
-    String ADVANCED_MAGIC_PACK;
+    String ECONOMY_PACK = "sapphiredonate:economy";
+    String MAGIC_PACK = "sapphiredonate:magic";
+    String TECHNO_PACK = "sapphiredonate:techno";
+    String ADVANCED_MAGIC_PACK = "sapphiredonate:advanced";
 
     // свитки возврата
-    String SCROLL_NEARNESS_10;
-    String SCROLL_NEARNESS_25;
-    String SCROLL_NEARNESS_50;
+    String SCROLL_NEARNESS_10 = "sapphiredonate:scroll_10";
+    String SCROLL_NEARNESS_25 = "sapphiredonate:scroll_25;
+    String SCROLL_NEARNESS_50 = "sapphiredonate:scroll_50";
     // ==============================================
 
     public Events(JavaPlugin core) {
