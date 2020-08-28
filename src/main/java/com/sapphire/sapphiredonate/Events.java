@@ -23,15 +23,16 @@ public class Events implements Listener {
 
     // ==============================================
     // паки
-    String ECONOMY_PACK = "sapphiredonate:economy";
-    String MAGIC_PACK = "sapphiredonate:magic";
-    String TECHNO_PACK = "sapphiredonate:techno";
-    String ADVANCED_MAGIC_PACK = "sapphiredonate:advanced";
+    String ECONOMY_PACK = "SAPPHIREDONATE_ECONOMY";
+    String MAGIC_PACK = "SAPPHIREDONATE_MAGIC";
+    String TECHNO_PACK = "SAPPHIREDONATE_TECHNO";
+    String ADVANCED_MAGIC_PACK = "SAPPHIREDONATE_ADVANCED";
 
     // свитки возврата
-    String SCROLL_NEARNESS_10 = "sapphiredonate:scroll_10";
-    String SCROLL_NEARNESS_25 = "sapphiredonate:scroll_25;
-    String SCROLL_NEARNESS_50 = "sapphiredonate:scroll_50";
+    String SCROLL_NEARNESS_10 = "SAPPHIREDONATE_SCROLL_10";
+    String SCROLL_NEARNESS_25 = "SAPPHIREDONATE_SCROLL_25";
+    String SCROLL_NEARNESS_50 = "SAPPHIREDONATE_SCROLL_50";
+    private File File;
     // ==============================================
 
     public Events(JavaPlugin core) {
@@ -53,6 +54,7 @@ public class Events implements Listener {
         if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             Player p = e.getPlayer();
             String current = p.getInventory().getItemInMainHand().getType().toString();
+            p.sendMessage(current);
             if (ids.contains(current)) {
                 final ItemStack itemStack = p.getInventory().getItemInMainHand();
                 e.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
@@ -66,7 +68,8 @@ public class Events implements Listener {
 
         // получение списка предметов
         List<ItemStack> items = new ArrayList<>();
-        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(new File(core.getDataFolder() + File.separator + way));
+        File = new File(core.getDataFolder() + File.separator + way + ".yml");
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(File);
         int i = 0;
         while (cfg.getItemStack(String.valueOf(i)) != null) {
             items.add(cfg.getItemStack(String.valueOf(i)));
